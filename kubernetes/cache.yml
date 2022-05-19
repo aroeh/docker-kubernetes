@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cache-deployment
+  labels:
+    environment: local
+    layer: data
+    app: cache
+spec:
+  replicas: 3
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+  selector:
+    matchLabels:
+      app: cache
+  template:
+    metadata:
+      labels:
+        app: cache
+    spec:
+      containers:
+      - name: redis-container
+        image: redis
+        imagePullPolicy: Always
+        resources:
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+        ports:
+          - containerPort: 6379
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cache-service
+  labels:
+    app: cache
+spec:
+  type: LoadBalancer
+  selector:
+    app: cache
+  ports:
+    - port: 6379
+      targetPort: 6379

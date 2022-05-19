@@ -1,0 +1,23 @@
+version: '3.9'
+
+networks:
+  default:
+
+services:
+  weather_api:
+    image: ${DOCKER_REGISTRY-}kub-weather-api
+    build:
+      context: ./weather_api/weather_api
+      dockerfile: Dockerfile
+
+  blazor_app:
+    image: ${DOCKER_REGISTRY-}kub-blazorwasm-app
+    build:
+      context: ./blazor_app/blazor_app
+      dockerfile: Dockerfile
+  
+  angular_app:
+    image: ${DOCKER_REGISTRY-}kub-angular-app
+    build:
+      context: ./angular_app
+      dockerfile: Dockerfile
