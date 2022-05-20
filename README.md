@@ -17,10 +17,10 @@ This repository is a continuation from previous repositories exploring docker an
 - [Docker Orchestration Overview](https://docs.docker.com/get-started/orchestration/)
 - [Kubernetes](https://kubernetes.io/docs/home/)
 - [Kubernetes CLI Reference](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#-strong-getting-started-strong-)
-- [](https://andrewlock.net/deploying-asp-net-core-applications-to-kubernetes-part-1-an-introduction-to-kubernetes/)
-- [](https://programmingfire.com/deploy-dotnet-minimal-apis-to-kubernetes)
-- [](https://docs.microsoft.com/en-us/dotnet/architecture/containerized-lifecycle/design-develop-containerized-apps/build-aspnet-core-applications-linux-containers-aks-kubernetes)
-- [](https://faun.pub/how-to-deploy-a-net-5-api-in-a-kubernetes-cluster-53212af6a0e2)
+- [An Introduction to Kubernetes](https://andrewlock.net/deploying-asp-net-core-applications-to-kubernetes-part-1-an-introduction-to-kubernetes/)
+- [Deploy .NET Minimal APIs To Kubernetes!](https://programmingfire.com/deploy-dotnet-minimal-apis-to-kubernetes)
+- [Microsoft - Build ASP.NET Core applications deployed as Linux containers](https://docs.microsoft.com/en-us/dotnet/architecture/containerized-lifecycle/design-develop-containerized-apps/build-aspnet-core-applications-linux-containers-aks-kubernetes)
+- [How to deploy a .NET 5 API in a Kubernetes cluster](https://faun.pub/how-to-deploy-a-net-5-api-in-a-kubernetes-cluster-53212af6a0e2)
 
 # Tools
 
