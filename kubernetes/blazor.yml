@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: blazorapp-deployment
+  labels:
+    environment: local
+    framework: blazor
+    layer: frontend
+    app: app-blazor
+spec:
+  replicas: 3
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+  selector:
+    matchLabels:
+      app: app-blazor
+  template:
+    metadata:
+      labels:
+        app: app-blazor
+    spec:
+      containers:
+      - name: blazorapp-container
+        image: kub-blazorwasm-app
+        imagePullPolicy: Never
+        resources:
+            limits:
+              memory: "256Mi"
+              cpu: "500m"
+        ports:
+          - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: blazorapp-service
+  labels:
+    app: app-blazor
+spec:
+  type: LoadBalancer
+  selector:
+    app: app-blazor
+  ports:
+    - port: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: blazorapp-loadbalancer
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 4001
+    targetPort: 80
+    protocol: TCP
+  selector:
+    app: app-blazor

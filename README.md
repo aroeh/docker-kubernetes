@@ -21,6 +21,7 @@ This repository is a continuation from previous repositories exploring docker an
 - [Deploy .NET Minimal APIs To Kubernetes!](https://programmingfire.com/deploy-dotnet-minimal-apis-to-kubernetes)
 - [Microsoft - Build ASP.NET Core applications deployed as Linux containers](https://docs.microsoft.com/en-us/dotnet/architecture/containerized-lifecycle/design-develop-containerized-apps/build-aspnet-core-applications-linux-containers-aks-kubernetes)
 - [How to deploy a .NET 5 API in a Kubernetes cluster](https://faun.pub/how-to-deploy-a-net-5-api-in-a-kubernetes-cluster-53212af6a0e2)
+- [How to deploy angular on kubernetes](https://blog.mayadata.io/openebs/steps-to-deploy-angular-application-on-kubernetes)
 
 # Tools
 
@@ -95,6 +96,8 @@ docker-compose build
 ```
 kubectl apply -f cache.yml
 kubectl apply -f api.yml
+kubectl apply -f blazor.yml
+kubectl apply -f angular.yml
 ```
 
 5. Confirm all pods and services are running in Kubernetes
@@ -106,4 +109,16 @@ kubectl get all
 > For example to get only deployments
 ```
 kubectl get deployments
+```
+6. Remove items as needed or remove them all
+```
+kubectl delete [OPTIONS]
+```
+```
+kubectl delete -f blazorapp.yml
+```
+```
+kubectl delete pods --all
+kubectl delete services --all
+kubectl delete deployments --all
 ```

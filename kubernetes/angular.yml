@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: angularapp-deployment
+  labels:
+    environment: local
+    framework: angular
+    layer: frontend
+    app: app-angular
+spec:
+  replicas: 3
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+  selector:
+    matchLabels:
+      app: app-angular
+  template:
+    metadata:
+      labels:
+        app: app-angular
+    spec:
+      containers:
+      - name: angularapp-container
+        image: kub-angular-app
+        imagePullPolicy: Never
+        resources:
+            limits:
+              memory: "256Mi"
+              cpu: "500m"
+        ports:
+          - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: angularapp-service
+  labels:
+    app: app-angular
+spec:
+  type: ClusterIP
+  selector:
+    app: app-angular
+  ports:
+    - port: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: angularapp-loadbalancer
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 5001
+    targetPort: 80
+    protocol: TCP
+  selector:
+    app: app-angular
