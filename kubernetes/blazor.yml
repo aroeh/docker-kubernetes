@@ -8,7 +8,7 @@ metadata:
     layer: frontend
     app: app-blazor
 spec:
-  replicas: 3
+  replicas: 1
   strategy:
     type: RollingUpdate
     rollingUpdate:
@@ -31,6 +31,9 @@ spec:
               cpu: "500m"
         ports:
           - containerPort: 80
+        env:
+          - name: ASPNETCORE_ENVIRONMENT
+            value: Development
 ---
 apiVersion: v1
 kind: Service
@@ -39,7 +42,7 @@ metadata:
   labels:
     app: app-blazor
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   selector:
     app: app-blazor
   ports:
